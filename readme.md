@@ -168,7 +168,67 @@ npm run preview
 
 <img width="2816" height="1536" alt="Gemini_Generated_Image_1mtcqz1mtcqz1mtc" src="https://github.com/user-attachments/assets/f9f84d9f-e5be-4d33-894a-551c3e857b36" />
 
+---
+
+## 📸 Screenshots
+
+> Screenshots are available in the `screenshots/` folder inside the repository.
+
+### Dashboard
+<img width="1919" height="977" alt="image" src="https://github.com/user-attachments/assets/f154461f-9eb7-46e1-b175-cfe0d3a58b3c" />
+
+
+### Tasks Page
+<img width="1919" height="984" alt="image" src="https://github.com/user-attachments/assets/ce25f617-213a-4792-b419-2aa94c98bc9e" />
+
+
+### Add Task
+<img width="1919" height="982" alt="image" src="https://github.com/user-attachments/assets/398388ac-24c0-4516-93e5-76fd5f4eeefd" />
+
+
+### Add Employee
+<img width="1919" height="981" alt="image" src="https://github.com/user-attachments/assets/cbdc2d78-ba2f-4ca1-b730-731bf0696717" />
+
+
+---
+
+## ✨ Features Summary
+
+- Employee management (create employee)
+- Task creation with employee assignment
+- Update task status (TODO → IN_PROGRESS → DONE)
+- Dashboard with task statistics
+- Filtering tasks by employee and status
+- Responsive UI using Tailwind CSS
+- SQLite persistent storage
+- Modular backend with MVC architecture
+
+---
+
+## 🧩 Assumptions & Limitations
+
+- Authentication/authorization is not included (all endpoints are open)
+- Only basic CRUD operations are implemented (delete operation not exposed in UI)
+- Designed for a single-organization use case (no multi-tenant support)
+- SQLite is used for simplicity; production deployment may use PostgreSQL/MySQL
+- Backend and frontend run separately on local development environment
+
+---
+
+## 📌 Submission Compliance
+
+This repository includes:
+
+- [x] **Frontend Source Code**
+- [x] **Backend Source Code**
+- [x] **Database Schema / Migration Script (`backend/database/schema.sql`)**
+- [x] **Sample Data (optional)**
+- [x] **README with architecture, setup, API documentation, screenshots & assumptions**
+
+
+
 # prou_frontendtasks
+
 
 
 
