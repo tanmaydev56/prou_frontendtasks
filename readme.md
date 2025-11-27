@@ -172,8 +172,6 @@ npm run preview
 
 ## 📸 Screenshots
 
-> Screenshots are available in the `screenshots/` folder inside the repository.
-
 ### Dashboard
 <img width="1919" height="977" alt="image" src="https://github.com/user-attachments/assets/f154461f-9eb7-46e1-b175-cfe0d3a58b3c" />
 
@@ -192,7 +190,7 @@ npm run preview
 
 ---
 
-## ✨ Features Summary
+##  Features Summary
 
 - Employee management (create employee)
 - Task creation with employee assignment
@@ -205,7 +203,7 @@ npm run preview
 
 ---
 
-## 🧩 Assumptions & Limitations
+##  Assumptions & Limitations
 
 - Authentication/authorization is not included (all endpoints are open)
 - Only basic CRUD operations are implemented (delete operation not exposed in UI)
@@ -215,7 +213,7 @@ npm run preview
 
 ---
 
-## 📌 Submission Compliance
+##  Submission Compliance
 
 This repository includes:
 
@@ -228,6 +226,7 @@ This repository includes:
 
 
 # prou_frontendtasks
+
 
 
 
