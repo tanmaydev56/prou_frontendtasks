@@ -158,7 +158,18 @@ npm run preview
 - CORS errors:
 	- Backend has `cors` enabled globally; ensure you’re hitting the correct `baseURL` and port.
 ---
+# Architechture Diagram
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_jh5klrjh5klrjh5k" src="https://github.com/user-attachments/assets/5d934ad7-7118-425f-9a9d-cbbe23e3941e" />
+
+
+
+# Flow Diagram
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_1mtcqz1mtcqz1mtc" src="https://github.com/user-attachments/assets/f9f84d9f-e5be-4d33-894a-551c3e857b36" />
+
 # prou_frontendtasks
+
 
 
 
