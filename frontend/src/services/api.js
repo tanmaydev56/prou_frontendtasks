@@ -7,11 +7,7 @@ export const API = axios.create({
 // Attach role and user info to every request
 API.interceptors.request.use((config) => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
-
-  if (user) {
-    config.headers["x-user-id"] = user.name;
-    config.headers["x-user-role"] = user.role;
-  }
-
+  if (user) config.headers["x-user-role"] = user.role;
   return config;
 });
+
