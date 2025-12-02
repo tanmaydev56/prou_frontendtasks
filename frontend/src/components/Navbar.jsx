@@ -3,6 +3,8 @@ import { useState } from "react";
 import { MdOutlineAddTask } from "react-icons/md";
 import { IoPeople } from "react-icons/io5";
 import { FaTasks } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+
 function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -44,7 +46,7 @@ function Navbar() {
   };
 
   const menuItems = [
-    { path: "/", label: "Dashboard", icon: "📊" },
+    { path: "/", label: "Dashboard", icon: <MdDashboard /> },
     { path: "/tasks", label: "Tasks", icon: <FaTasks /> },
     ...(user.role === "admin"
       ? [

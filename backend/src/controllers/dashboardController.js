@@ -1,59 +1,52 @@
 const db = require("../db");
 
-exports.getStats = (req, res) => {
-  const stats = {};
+exports.getDashboardData = async (req, res) => {
+  try {
+    const stats = {};
 
-  db.get("SELECT COUNT(*) AS total FROM tasks", [], (err, row) => {
-    stats.totalTasks = row.total;
+    // Total tasks
+    const total = await db.query("SELECT COUNT(*) AS total FROM tasks");
+    stats.totalTasks = parseInt(total.rows[0].total);
 
-    db.all(
-      `SELECT status, COUNT(*) AS count FROM tasks GROUP BY status`,
-      [],
-      (err2, rows2) => {
-        stats.byStatus = rows2;
-        res.json(stats);
-      }
+    // Completed tasks
+    const completed = await db.query(
+      "SELECT COUNT(*) AS completed FROM tasks WHERE status = 'DONE'"
     );
-  });
-};
+    stats.completedTasks = parseInt(completed.rows[0].completed);
 
-exports.getDashboardData = (req, res) => {
-  const stats = {};
+    stats.completionRate =
+      stats.totalTasks > 0
+        ? ((stats.completedTasks / stats.totalTasks) * 100).toFixed(1)
+        : 0;
 
-  db.get(`SELECT COUNT(*) AS total FROM tasks`, (err, row) => {
-    stats.totalTasks = row.total;
-
-    db.get(
-      `SELECT COUNT(*) AS completed FROM tasks WHERE status = 'DONE'`,
-      (err2, row2) => {
-        stats.completedTasks = row2.completed;
-        stats.completionRate = stats.totalTasks
-          ? ((stats.completedTasks / stats.totalTasks) * 100).toFixed(1)
-          : 0;
-
-        db.get(
-          `SELECT COUNT(*) AS overdue FROM tasks 
-           WHERE due_date IS NOT NULL 
-           AND due_date < DATE('now') 
-           AND status != 'DONE'`,
-          (err3, row3) => {
-            stats.overdueTasks = row3.overdue;
-
-            db.all(
-              `SELECT e.name, COUNT(t.id) AS taskCount
-               FROM employees e 
-               LEFT JOIN tasks t ON e.id = t.employee_id
-               GROUP BY e.id`,
-              (err4, rows4) => {
-                stats.tasksPerEmployee = rows4;
-
-                res.json(stats);
-              }
-            );
-          }
-        );
-      }
+    // Overdue tasks
+    const overdue = await db.query(
+      `
+      SELECT COUNT(*) AS overdue
+      FROM tasks 
+      WHERE due_date IS NOT NULL
+      AND due_date < CURRENT_DATE
+      AND status != 'DONE'
+      `
     );
-  });
-};
+    stats.overdueTasks = parseInt(overdue.rows[0].overdue);
 
+    // Tasks per employee
+    const perEmployee = await db.query(
+      `
+      SELECT e.name, COUNT(t.id) AS taskCount
+      FROM employees e
+      LEFT JOIN tasks t ON e.id = t.employee_id
+      GROUP BY e.id
+      ORDER BY e.id
+      `
+    );
+
+    stats.tasksPerEmployee = perEmployee.rows;
+
+    res.json(stats);
+  } catch (err) {
+    console.error("Dashboard error:", err);
+    res.status(500).json({ error: "Failed to load dashboard data" });
+  }
+};

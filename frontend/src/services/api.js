@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: "http://localhost:3000", // your backend URL
+  baseURL:"https://backend-prou.onrender.com"
 });
 
 // Attach role and user info to every request

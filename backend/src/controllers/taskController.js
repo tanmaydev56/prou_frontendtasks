@@ -3,44 +3,45 @@ const db = require("../db");
 // -------------------------------------------
 // GET /tasks
 // -------------------------------------------
-exports.getTasks = (req, res) => {
-  let query = `
-    SELECT t.*, e.name AS employee_name
-    FROM tasks t
-    LEFT JOIN employees e ON t.employee_id = e.id
-    WHERE 1 = 1
-  `;
+exports.getTasks = async (req, res) => {
+  try {
+    let query = `
+      SELECT t.*, e.name AS employee_name
+      FROM tasks t
+      LEFT JOIN employees e ON t.employee_id = e.id
+      WHERE 1 = 1
+    `;
+    let params = [];
+    let count = 1;
 
-  let params = [];
+    if (req.query.status) {
+      query += ` AND t.status = $${count++}`;
+      params.push(req.query.status);
+    }
 
-  if (req.query.status) {
-    query += " AND t.status = ?";
-    params.push(req.query.status);
+    if (req.query.employeeId) {
+      query += ` AND t.employee_id = $${count++}`;
+      params.push(req.query.employeeId);
+    }
+
+    if (req.query.search) {
+      query += ` AND t.title ILIKE $${count++}`;
+      params.push(`%${req.query.search}%`);
+    }
+
+    query += ` ORDER BY t.created_at DESC`;
+
+    const result = await db.query(query, params);
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch tasks" });
   }
-
-  if (req.query.employeeId) {
-    query += " AND t.employee_id = ?";
-    params.push(req.query.employeeId);
-  }
-
-  if (req.query.search) {
-    query += " AND t.title LIKE ?";
-    params.push(`%${req.query.search}%`);
-  }
-
-  query += " ORDER BY t.created_at DESC";
-
-  db.all(query, params, (err, rows) => {
-    if (err) return res.status(500).json({ error: "Failed to fetch tasks" });
-    res.json(rows);
-  });
 };
 
 // -------------------------------------------
-// POST /tasks  (Admin Only)
+// POST /tasks (Admin Only)
 // -------------------------------------------
-exports.addTask = (req, res) => {
-  // Server-side RBAC (Extra Protection)
+exports.addTask = async (req, res) => {
   if (req.header("x-user-role") !== "admin") {
     return res.status(403).json({ error: "Only admins can create tasks" });
   }
@@ -49,36 +50,30 @@ exports.addTask = (req, res) => {
 
   if (!title || !employee_id) {
     return res.status(400).json({
-      error: "title and employee_id are required"
+      error: "title and employee_id are required",
     });
   }
 
-  const sql = `
-    INSERT INTO tasks (title, description, employee_id, due_date, status)
-    VALUES (?, ?, ?, ?, 'TODO')
-  `;
+  try {
+    const result = await db.query(
+      `
+      INSERT INTO tasks (title, description, employee_id, due_date, status)
+      VALUES ($1, $2, $3, $4, 'TODO')
+      RETURNING *
+      `,
+      [title, description || null, employee_id, due_date || null]
+    );
 
-  const values = [title, description || null, employee_id, due_date || null];
-
-  db.run(sql, values, function (err) {
-    if (err) return res.status(500).json({ error: "Failed to create task" });
-
-    res.status(201).json({
-      id: this.lastID,
-      title,
-      description,
-      employee_id,
-      due_date: due_date || null,
-      status: "TODO",
-    });
-  });
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create task" });
+  }
 };
 
 // -------------------------------------------
-// PUT /tasks/:id  (Admin Only)
+// PUT /tasks/:id (Admin Only)
 // -------------------------------------------
-exports.updateTask = (req, res) => {
-  // Server-side RBAC (Extra Protection)
+exports.updateTask = async (req, res) => {
   if (req.header("x-user-role") !== "admin") {
     return res.status(403).json({ error: "Only admins can update tasks" });
   }
@@ -90,18 +85,18 @@ exports.updateTask = (req, res) => {
     return res.status(400).json({ error: "status is required" });
   }
 
-  const sql = `UPDATE tasks SET status = ? WHERE id = ?`;
+  try {
+    const result = await db.query(
+      `UPDATE tasks SET status = $1 WHERE id = $2 RETURNING id`,
+      [status, id]
+    );
 
-  db.run(sql, [status, id], function (err) {
-    if (err) return res.status(500).json({ error: "Failed to update task" });
-
-    if (this.changes === 0) {
+    if (result.rowCount === 0) {
       return res.status(404).json({ error: "Task not found" });
     }
 
-    res.json({
-      message: "Task updated successfully",
-      updatedId: id,
-    });
-  });
+    res.json({ message: "Task updated", updatedId: id });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update task" });
+  }
 };

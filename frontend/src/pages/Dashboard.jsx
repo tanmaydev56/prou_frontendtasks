@@ -10,7 +10,9 @@ import {
   LinearScale,
   BarElement
 } from "chart.js";
-
+import { IoMdDoneAll } from "react-icons/io";
+import { LuNotepadText } from "react-icons/lu";
+import { RxCross1 } from "react-icons/rx";
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -87,7 +89,7 @@ export default function Dashboard() {
                 <p className="text-3xl font-bold mt-2">{data.totalTasks}</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-                <span className="text-blue-600 text-xl">📋</span>
+                <span className="text-blue-600 text-xl"><LuNotepadText /></span>
               </div>
             </div>
           </div>
@@ -99,7 +101,7 @@ export default function Dashboard() {
                 <p className="text-3xl font-bold mt-2">{data.completionRate}%</p>
               </div>
               <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
-                <span className="text-green-600 text-xl">✅</span>
+                <span className="text-green-600 text-xl"><IoMdDoneAll /></span>
               </div>
             </div>
           </div>
@@ -113,7 +115,7 @@ export default function Dashboard() {
                 </p>
               </div>
               <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center">
-                <span className="text-red-600 text-xl">⚠️</span>
+                <span className="text-red-600 text-xl"><RxCross1 /></span>
               </div>
             </div>
           </div>

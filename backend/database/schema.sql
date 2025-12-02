@@ -1,16 +1,23 @@
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS tasks;
 
+-- Employees Table
 CREATE TABLE employees (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    designation VARCHAR(50)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    designation TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tasks Table
 CREATE TABLE tasks (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
     description TEXT,
-    status VARCHAR(20) DEFAULT 'TODO', -- TODO, IN_PROGRESS, DONE
-    employee_id INTEGER REFERENCES employees(id) ON DELETE SET NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    employee_id INTEGER NOT NULL,
+    status TEXT DEFAULT 'TODO',
+    due_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (employee_id) REFERENCES employees(id)
 );
