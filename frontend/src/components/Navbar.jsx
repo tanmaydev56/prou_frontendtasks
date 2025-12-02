@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-
+import { MdOutlineAddTask } from "react-icons/md";
+import { IoPeople } from "react-icons/io5";
+import { FaTasks } from "react-icons/fa";
 function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
@@ -43,23 +45,23 @@ function Navbar() {
 
   const menuItems = [
     { path: "/", label: "Dashboard", icon: "📊" },
-    { path: "/tasks", label: "Tasks", icon: "✅" },
+    { path: "/tasks", label: "Tasks", icon: <FaTasks /> },
     ...(user.role === "admin"
       ? [
-          { path: "/add-task", label: "Add Task", icon: "➕" },
-          { path: "/add-employee", label: "Add Employee", icon: "👥" },
+          { path: "/add-task", label: "Add Task", icon:<MdOutlineAddTask />  },
+          { path: "/add-employee", label: "Add Employee", icon: <IoPeople />  },
         ]
       : []),
   ];
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm bg-white/95">
+    <nav className=" shadow-lg sticky top-0 z-50 border-b border-gray-200 backdrop-blur-sm bg-white/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Branding */}
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-linear-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">TT</span>
             </div>
             <div>
@@ -153,7 +155,7 @@ function Navbar() {
           <div className="pt-4 mt-4 border-t border-gray-200">
             <div className="flex items-center justify-between px-3">
               <div className="flex items-center space-x-3">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${user.role === 'admin' ? 'bg-gradient-to-br from-green-500 to-green-700' : 'bg-gradient-to-br from-blue-500 to-blue-700'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center ${user.role === 'admin' ? 'bg-linear-to-br from-green-500 to-green-700' : 'bg-linear-to-br from-blue-500 to-blue-700'}`}>
                   <span className="text-white font-medium text-sm">
                     {user.name.charAt(0)}
                   </span>
