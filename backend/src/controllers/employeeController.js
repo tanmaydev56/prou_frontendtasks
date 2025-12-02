@@ -1,13 +1,14 @@
-const db = require("../db");
+const db = require('../db');
 
-exports.getEmployees = (req, res) => {
-  db.all("SELECT * FROM employees", [], (err, rows) => {
-    if (err) return res.status(500).json({ error: "Failed to fetch employees" });
+exports.getEmployees = (req,res) =>{
+  db.all(`SELECT * FROM employees`,[],(err,rows)=>{
+    if(err){
+      return res.status(500).json({error: "Failed to retrieve employees"});
+    }
     res.json(rows);
-  });
-};
-
-exports.createEmployee = (req, res) => {
+  })
+}
+exports.addEmployee = (req, res) => {
   const { name, email, designation } = req.body;
 
   if (!name || !email) {

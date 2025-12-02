@@ -1,7 +1,12 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const employeeController = require("../controllers/employeeController");
+const requireAdmin = require("../middleware/requireAdmin");
 
+// Admin-protected route
+router.post("/", requireAdmin, employeeController.addEmployee);
+
+// Public route
 router.get("/", employeeController.getEmployees);
-router.post("/", employeeController.createEmployee); // 👈 important
 
 module.exports = router;

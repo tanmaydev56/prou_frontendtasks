@@ -5,11 +5,10 @@ require('dotenv').config();
 const dbPath = process.env.DB_FILE || path.join(__dirname, '..', 'database', 'task-tracker.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) console.error("❌ Database connection error:", err.message);
-  else console.log("📌 SQLite DB connected:", dbPath);
+  if (err) console.error("Database connection error:", err.message);
+  else console.log("SQLite DB connected:", dbPath);
 });
 
-// Create tables
 db.serialize(() => {
   db.run("PRAGMA foreign_keys = ON");
 
@@ -18,6 +17,7 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       email TEXT UNIQUE NOT NULL,
+      role TEXT DEFAULT 'employee',
       designation TEXT
     );
   `);
@@ -30,6 +30,7 @@ db.serialize(() => {
       status TEXT DEFAULT 'TODO',
       employee_id INTEGER,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      due_date DATE,
       FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE SET NULL
     );
   `);
