@@ -35,7 +35,7 @@ function Tasks() {
   return (
     <div className="min-h-screen bg-gray-50 py-6 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
+       
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Task Management</h1>
           <p className="text-gray-600 mt-2">
@@ -43,7 +43,7 @@ function Tasks() {
           </p>
         </div>
 
-        {/* Filter Section */}
+        
         <div className="bg-white rounded-2xl shadow-lg border p-6 mb-8">
           <div className="mb-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Filters & Search</h2>
@@ -68,7 +68,7 @@ function Tasks() {
                 </div>
               </div>
 
-              {/* Status Filter */}
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Status
@@ -84,7 +84,7 @@ function Tasks() {
                 </select>
               </div>
 
-              {/* Employee Filter */}
+             
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Assigned To
@@ -102,7 +102,7 @@ function Tasks() {
                 </select>
               </div>
 
-              {/* Results Count */}
+              
               <div className="flex flex-col justify-end">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-sm text-gray-600">Showing</p>
@@ -116,11 +116,11 @@ function Tasks() {
           </div>
         </div>
 
-        {/* Tasks Table Section */}
+       
         <div className="bg-white rounded-2xl shadow-lg border overflow-hidden">
           {tasks.length > 0 ? (
             <>
-              {/* Table Header */}
+              
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gray-50 border-b">
@@ -142,7 +142,7 @@ function Tasks() {
                         key={t.id}
                         className="hover:bg-gray-50 transition-colors duration-150"
                       >
-                        {/* Task Details */}
+                       
                         <td className="px-6 py-5">
                           <div>
                             <h3 className="font-medium text-gray-900 text-base mb-1">
@@ -159,7 +159,7 @@ function Tasks() {
                         {/* Assigned Employee */}
                         <td className="px-6 py-5">
                           <div className="flex items-center">
-                            <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                            <div className="shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
                               <span className="text-blue-600 font-medium text-sm">
                                 {t.employee_name?.[0]?.toUpperCase() || "U"}
                               </span>
@@ -185,7 +185,7 @@ function Tasks() {
                               {t.status.replace("_", " ")}
                             </span>
 
-                            {/* Admin-only status update dropdown */}
+                           
                             {user?.role === "admin" && (
                               <div className="relative">
                                 <select
@@ -199,7 +199,7 @@ function Tasks() {
                                       toast.success("Status updated successfully");
                                       fetchTasks();
                                     } catch (err) {
-                                      toast.error("Failed to update status");
+                                      toast.error("Failed to update status",err);
                                     }
                                   }}
                                 >

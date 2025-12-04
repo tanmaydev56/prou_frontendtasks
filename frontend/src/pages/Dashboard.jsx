@@ -66,7 +66,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-8">
-      {/* Header */}
+     
       <header className="mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Project Dashboard
@@ -76,7 +76,7 @@ export default function Dashboard() {
         </p>
       </header>
 
-      {/* KPI Cards */}
+      
       <section className="mb-12">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Key Metrics
@@ -128,7 +128,7 @@ export default function Dashboard() {
           Visual Analytics
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Status Distribution Card */}
+          
           <div className="bg-white rounded-xl shadow-sm border p-6">
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-gray-900">
@@ -156,7 +156,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Employee Distribution Card */}
+          
           <div className="bg-white rounded-xl shadow-sm border p-6">
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-gray-900">
