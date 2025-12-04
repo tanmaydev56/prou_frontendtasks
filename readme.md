@@ -2,7 +2,6 @@
 
 [![Frontend: React + Vite](https://img.shields.io/badge/frontend-React%20%2B%20Vite-blue)]()
 [![Styling: Tailwind CSS](https://img.shields.io/badge/style-TailwindCSS-teal)]()
-[![Backend: Node/Express (separate)]()]()
 [![Database: PostgreSQL](https://img.shields.io/badge/db-PostgreSQL-%23336791)]()
 [![Deployment: Vercel](https://img.shields.io/badge/deploy-Vercel-black)]()
 
@@ -28,7 +27,7 @@ Table of Contents
 
 ---
 
-Project overview (Updated)
+Project overview 
 --------------------------
 
 Prou is a lightweight task management frontend application built with React, Vite and Tailwind CSS and deployed on Vercel. The backend is hosted as a separate service using Node.js + Express + PostgreSQL and deployed on Render. The project migrated away from SQLite and now uses PostgreSQL for production-grade data persistence (schemas, controllers, queries and env configuration updated).
@@ -78,16 +77,6 @@ Features (Updated)
 
 Architecture & flow diagrams
 ----------------------------
-
-Below are the provided architecture diagrams. The images are included in the repository under the `diagrams/` folder.
-
-- Architecture diagram:
-  ![Architecture Diagram](diagrams/architecture.png)
-
-- Flow diagram:
-  ![Flow Diagram](diagrams/flow.png)
-
-(Database & backend flow illustrated in diagrams)
 
 Database (PostgreSQL)
 ---------------------
@@ -283,18 +272,16 @@ Screenshots
 All existing screenshots are retained in this repo under `screenshots/`. Keep the image files as-is.
 
 - Dashboard
-  ![Dashboard](screenshots/dashboard.png)
-
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/093d3423-f173-406c-9a55-317c07868fda" />
 - Tasks
-  ![Tasks](screenshots/tasks.png)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/20f6fc76-dcdd-4530-9fdd-c0dd0d36d311" />
 
 - Add Task
-  ![Add Task](screenshots/add-task.png)
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e7cf9655-edd6-4240-8e87-5adc977b1c32" />
 
 - Add Employee
-  ![Add Employee](screenshots/add-employee.png)
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fc82de95-e730-432c-83b3-7d8128728adc" />
 
-If you move these files, update the README links accordingly.
 
 Usage & UX notes
 ----------------
@@ -346,13 +333,9 @@ Contributing
 - Backend changes should be made in the backend repository (placeholder: https://github.com/tanmaydev56/prou_backend).
 - When changing the API contract, update the README API docs and coordinate changes between repos.
 
-License
--------
-Specify your license here (e.g., MIT). Add LICENSE file to repository.
-
 Backend repository (placeholder)
 --------------------------------
-- Repo (placeholder): https://github.com/tanmaydev56/prou_backend
+- Repo (placeholder): [https://github.com/tanmaydev56/prou_backend](https://github.com/tanmaydev56/backend_PROU)
 
 Contact / Maintainers
 ---------------------
@@ -369,3 +352,4 @@ Acknowledgements
 If you'd like, I can:
 - create or update this README in the repo with a commit/PR,
 - or open a PR that also updates any config values (like Vite env) to reference the Render backend.
+
