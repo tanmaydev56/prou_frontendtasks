@@ -122,7 +122,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Charts Section */}
+     
       <section>
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
           Visual Analytics

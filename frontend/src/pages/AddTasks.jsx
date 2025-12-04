@@ -90,7 +90,7 @@ function AddTask() {
               />
             </div>
 
-            {/* Description Field */}
+            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Description
@@ -107,7 +107,7 @@ function AddTask() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Employee Assignment */}
+              
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Assign to
@@ -130,7 +130,6 @@ function AddTask() {
                 </select>
               </div>
 
-              {/* Due Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Due Date
@@ -146,12 +145,12 @@ function AddTask() {
               </div>
             </div>
 
-            {/* Submit Button (Admin Only) */}
+            
             {user?.role === "admin" && (
               <div className="pt-4">
                 <button
                   disabled={loading}
-                  className={`w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center ${
+                  className={`w-full bg-liner-gradient-to-r from-blue-600 to-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center ${
                     loading
                       ? "opacity-70 cursor-not-allowed"
                       : "hover:from-blue-700 hover:to-blue-800 hover:shadow-lg active:scale-[0.98]"

@@ -16,7 +16,6 @@ const AddEmployee = () => {
     if (!form.name.trim()) return "Name is required";
     if (!form.email.trim()) return "Email is required";
 
-    // Basic email check
     if (!/\S+@\S+\.\S+/.test(form.email)) return "Invalid email format";
 
     if (!form.designation.trim()) return "Designation is required";
@@ -63,7 +62,7 @@ const AddEmployee = () => {
 
         <div className="bg-white rounded-2xl shadow-lg border p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Name Field */}
+            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
@@ -79,7 +78,7 @@ const AddEmployee = () => {
               />
             </div>
 
-            {/* Email Field */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
@@ -95,7 +94,7 @@ const AddEmployee = () => {
               />
             </div>
 
-            {/* Designation Field */}
+           
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Designation / Role
@@ -113,12 +112,12 @@ const AddEmployee = () => {
               />
             </div>
 
-            {/* Submit Button (Admin Only) */}
+            
             {user?.role === "admin" && (
               <div className="pt-4">
                 <button
                   disabled={loading}
-                  className={`w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center ${
+                  className={`w-full bg-linear-to-r from-green-600 to-green-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center ${
                     loading
                       ? "opacity-70 cursor-not-allowed"
                       : "hover:from-green-700 hover:to-green-800 hover:shadow-lg active:scale-[0.98]"

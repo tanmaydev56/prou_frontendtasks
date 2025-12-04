@@ -72,7 +72,7 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Desktop Menu */}
+          
           <div className="hidden md:flex items-center space-x-2">
             {menuItems.map((item) => (
               <Link
@@ -85,7 +85,6 @@ function Navbar() {
               </Link>
             ))}
 
-            {/* User Role Switch */}
             <div className="ml-4 pl-4 border-l border-gray-200">
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2">
@@ -120,7 +119,7 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setOpen(!open)}
@@ -135,7 +134,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+    
       <div className={`md:hidden transition-all duration-300 ease-in-out ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
         <div className="px-4 pt-2 pb-4 space-y-1 bg-white border-t border-gray-200">
           {menuItems.map((item) => (
@@ -153,7 +152,7 @@ function Navbar() {
             </Link>
           ))}
           
-          {/* User Info & Role Switch for Mobile */}
+          
           <div className="pt-4 mt-4 border-t border-gray-200">
             <div className="flex items-center justify-between px-3">
               <div className="flex items-center space-x-3">
